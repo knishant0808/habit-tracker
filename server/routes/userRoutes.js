@@ -19,7 +19,7 @@ router.get('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie('token');
-    res.redirect('/user/login');
+    res.redirect('/');
 });
 
 // Route for handling user registration
