@@ -2,24 +2,32 @@
 <html>
 <head>
     <title>Habit Tracker</title>
+    <!-- Linking the CSS stylesheet for styling the habit tracker page -->
     <link rel="stylesheet" href="/style/habitTracker.css">
 </head>
 <body>
+    <!-- Main container for the habit tracker -->
     <div class="tracker-container">
-        <!-- Habit Name -->
+        
+        <!-- Displaying the name of the current habit being tracked -->
         <div class="habit-name">
             <h1><%= habitName %></h1>
         </div>
         
-        <!-- Habit Tracking Week -->
+        <!-- Section for tracking the habit over the past week -->
         <div class="week-tracker">
+            <!-- Looping through the past 7 days -->
             <% for(let i = 6; i >= 0; i--) { %>
-                <% let trackDate = new Date(); 
+                <% 
+                let trackDate = new Date(); 
                 trackDate.setDate(trackDate.getDate() - i); 
                 let found = trackingData.find(track => moment(track.date).isSame(trackDate, 'day'));
                 %>
+                <!-- Individual day in the tracking week -->
                 <div class="day">
+                    <!-- Displaying the date of the day -->
                     <div class="date"><%= trackDate.getDate() %></div>
+                    <!-- Displaying the status (done, not done, or none) for the day -->
                     <div class="status <%= found ? found.status : 'none' %>">
                         <% if (found && found.status === 'done') { %>
                             Done
@@ -28,7 +36,7 @@
                         <% } else { %>
                             None
                         <% } %>
-                        <!-- Form to change status -->
+                        <!-- Form to allow changing the status of the habit -->
                         <form action="/habit/update-status" method="POST">
                             <input type="hidden" name="date" value="<%= trackDate.toISOString() %>">
                             <input type="hidden" name="habitId" value="<%= habit._id %>">
@@ -39,9 +47,8 @@
                 </div>
             <% } %>
         </div>
-
         
-        <!-- Back Link -->
+        <!-- Link to navigate back to the dashboard -->
         <a href="/dashboard" class="back-link">Back to Dashboard</a>
     </div>
 </body>

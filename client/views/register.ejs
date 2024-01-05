@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Set the title of the webpage -->
     <title>Register</title>
+    <!-- Link to the CSS stylesheet for the registration page -->
     <link rel="stylesheet" href="/style/loginRegister.css">
 </head>
 <body>
+    <!-- Main heading -->
     <h2>User Registration</h2>
+    <!-- Start of the registration form -->
     <form action="/user/register" method="POST">
+        <!-- Label for the name input field -->
         <label for="name">Name:</label>
+        <!-- Name input field -->
         <input type="text" id="name" name="name" required>
         <br>
+        <!-- Label for the email input field -->
         <label for="email">Email:</label>
+        <!-- Email input field -->
         <input type="email" id="email" name="email" required>
         <br>
+        <!-- Label for the password input field -->
         <label for="password">Password:</label>
+        <!-- Password input field -->
         <input type="password" id="password" name="password" required>
         <br>
+        <!-- Registration button -->
         <button type="submit">Register</button>
     </form>    
 </body>

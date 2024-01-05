@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Set the title of the webpage -->
     <title>Login</title>
+    <!-- Link to the CSS stylesheet for the login page -->
     <link rel="stylesheet" href="/style/loginRegister.css">
 </head>
 <body>
+    <!-- Main heading -->
     <h2>Login</h2>
+    <!-- Start of the login form -->
     <form action="/user/login" method="POST">
+        <!-- Label for the email input field -->
         <label for="email">Email:</label>
+        <!-- Email input field -->
         <input type="email" id="email" name="email" required>
         <br>
+        <!-- Label for the password input field -->
         <label for="password">Password:</label>
+        <!-- Password input field -->
         <input type="password" id="password" name="password" required>
         <br>
+        <!-- Login button -->
         <button type="submit">Login</button>
     </form>
+    <!-- End of the login form -->
 </body>
 </html>
