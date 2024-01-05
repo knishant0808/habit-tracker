@@ -1,5 +1,7 @@
 // Import the Habit model
 const Habit = require('../models/habit');
+// Import the tracking model    
+const Tracking = require('../models/tracking');
 
 // Define an asynchronous function to add a habit
 const addHabit = async (req, res) => {
@@ -26,14 +28,16 @@ const addHabit = async (req, res) => {
     }
 };
 
-// Define an asynchronous function to delete a habit
+// Define an asynchronous function to delete a habit and its associated tracking data
 const deleteHabit = async (req, res) => {
     try {
         // Extract the habit ID from the request parameters
         const habitId = req.params.habitId;
-        // Delete the habit from the database
+        // First, delete all tracking data associated with this habit
+        await Tracking.deleteMany({ habit: habitId });
+        // Then, delete the habit itself
         await Habit.findByIdAndDelete(habitId);
-        // Redirect the user to the dashboard
+        // Redirect the user to the dashboard after deletion
         res.redirect('/dashboard');
     } catch (error) {
         // Log any errors that occur
