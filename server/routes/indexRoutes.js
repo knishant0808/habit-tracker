@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     res.render('homepage');
 });
 
-// Use userRoutes for '/user' path
+// Further routes
 router.use('/user', userRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/habit', habitRoutes);

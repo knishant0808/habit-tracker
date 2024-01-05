@@ -22,7 +22,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-// Route for handling user registration
+// Routes for the user login and registration pages
 router.post('/register', userController.registerUser);
 router.post('/login', userController.loginUser);
 

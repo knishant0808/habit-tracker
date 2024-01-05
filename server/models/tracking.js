@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const trackingSchema = new mongoose.Schema({
     habit: {
         type: mongoose.Schema.Types.ObjectId,

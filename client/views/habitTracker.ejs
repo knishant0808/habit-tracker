@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="/style/habitTracker.css">
+</head>
+<body>
+    <div class="tracker-container">
+        <!-- Habit Name -->
+        <div class="habit-name">
+            <h1><%= habitName %></h1>
+        </div>
+        
+        <!-- Habit Tracking Week -->
+        <div class="week-tracker">
+            <% for(let i = 6; i >= 0; i--) { %>
+                <% let trackDate = new Date(); 
+                   trackDate.setDate(trackDate.getDate() - i); 
+                   let found = trackingData.find(track => new Date(track.date).toDateString() === trackDate.toDateString());
+                %>
+                <div class="day">
+                    <div class="date"><%= trackDate.getDate() %></div>
+                    <div class="status <%= found ? found.status : 'none' %>">
+                        <%= found ? (found.status === 'done' ? '&#10004;' : '&#10008;') : 'None' %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        
+        <!-- Back Link -->
+        <a href="/dashboard" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    background-color: #fff;
+}
+
+.tracker-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.habit-name {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.week-tracker {
+    display: flex;
+    justify-content: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    flex-wrap: wrap; /* To accommodate smaller screens */
+}
+
+.day {
+    flex-basis: 14%; /* Allocate equal space for each day, total 7 days */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0; /* Slight margin for visual separation */
+}
+
+.date {
+    font-size: 16px;
+    color: #333;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status.done {
+    background-color: #4CAF50;
+}
+
+.status.not-done {
+    background-color: #f44336;
+}
+
+.status.none {
+    background-color: #ff9800;
+}
+
+.back-link {
+    color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

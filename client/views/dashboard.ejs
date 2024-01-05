@@ -27,7 +27,7 @@
         <ul>
             <% if (habits && habits.length > 0) { %>
                 <% habits.forEach(function(habit) { %>
-                    <li><%= habit.name %> - [Status]</li>
+                    <li><a href="/habit/tracking/<%= habit._id %>"><%= habit.name %></a> - [Status]</li>
                 <% }); %>
             <% } else { %>
                 <li>No habits found. Add a new habit!</li>
