@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>User Dashboard - Habit Tracker</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/style/dashboard.css">
 </head>
 <body>
     <h1>Habit Tracker Dashboard</h1>
     
+    <!-- Logout Button -->
     <div class="logout-button">
         <a href="/user/logout" class="button">Logout</a>
     </div>
@@ -14,7 +15,7 @@
     <!-- Form to Add New Habit -->
     <div class="habit-form">
         <h2>Add New Habit</h2>
-        <form action="/add-habit" method="POST">
+        <form action="/habit/add" method="POST">
             <input type="text" name="habitName" placeholder="Enter habit name" required>
             <button type="submit">Add Habit</button>
         </form>
@@ -24,10 +25,13 @@
     <div class="habit-list">
         <h2>Your Habits</h2>
         <ul>
-            <!-- Habit items will be dynamically inserted here -->
-            <li>Habit 1 - [Status]</li>
-            <li>Habit 2 - [Status]</li>
-            <!-- etc. -->
+            <% if (habits && habits.length > 0) { %>
+                <% habits.forEach(function(habit) { %>
+                    <li><%= habit.name %> - [Status]</li>
+                <% }); %>
+            <% } else { %>
+                <li>No habits found. Add a new habit!</li>
+            <% } %>
         </ul>
     </div>
 </body>

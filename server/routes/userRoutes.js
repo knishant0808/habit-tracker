@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-const auth = require('../middleware/auth');
+const auth = require('../middleware/passportMiddleware');
 
 // Route for the user registration page
 router.get('/dashboard', auth, (req, res) => {
