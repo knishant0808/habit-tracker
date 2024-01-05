@@ -6,6 +6,7 @@ const auth = require('../middleware/passportMiddleware'); // Import the authenti
 
 // Route to handle adding a new habit
 router.post('/add', auth, habitController.addHabit);
+router.post('/delete/:habitId', auth, habitController.deleteHabit);
 router.get('/tracking/:habitId', trackingController.renderHabitTracker);
 
 module.exports = router;

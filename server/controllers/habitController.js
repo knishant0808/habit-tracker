@@ -16,7 +16,19 @@ const addHabit = async (req, res) => {
     }
 };
 
+const deleteHabit = async (req, res) => {
+    try {
+        const habitId = req.params.habitId;
+        await Habit.findByIdAndDelete(habitId);
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+};
+
 module.exports = {
-    addHabit
+    addHabit,
+    deleteHabit
     // ... other controller methods ...
 };
