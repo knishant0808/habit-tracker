@@ -1,6 +1,6 @@
+const moment = require('moment'); // Moment.js for date manipulation
 const Tracking = require('../models/tracking'); // Adjust the path as necessary
 const Habit = require('../models/habit'); // Adjust the path as necessary
-const moment = require('moment'); // Moment.js for date manipulation
 
 const renderHabitTracker = async (req, res) => {
     try {
@@ -39,8 +39,10 @@ const renderHabitTracker = async (req, res) => {
 
         // Render the template with the habit name and tracking data
         res.render('habitTracker', {
+            habit: habit,
             habitName: habit.name,
-            trackingData: finalTrackingData
+            trackingData: finalTrackingData,
+            moment: moment
         });
     } catch (error) {
         console.error(error);
@@ -48,6 +50,41 @@ const renderHabitTracker = async (req, res) => {
     }
 };
 
+const updateStatus = async (req, res) => {
+    try {
+        const { habitId, date, status } = req.body;
+        const formattedDate = moment(date).startOf('day');
+
+        // Check if tracking already exists for the given date
+        let tracking = await Tracking.findOne({
+            habit: habitId,
+            date: {
+                $gte: formattedDate.toDate(),
+                $lt: moment(formattedDate).add(1, 'days').toDate()
+            }
+        });
+
+        if (tracking) {
+            // Update existing tracking
+            tracking.status = status;
+        } else {
+            // Or create a new tracking entry
+            tracking = new Tracking({
+                habit: habitId,
+                date: formattedDate.toDate(),
+                status: status
+            });
+        }
+
+        await tracking.save();
+        res.redirect('/habit/tracking/' + habitId);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating status');
+    }
+};
+
 module.exports = {
-    renderHabitTracker
+    renderHabitTracker,
+    updateStatus
 };

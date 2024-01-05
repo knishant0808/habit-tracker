@@ -8,5 +8,6 @@ const auth = require('../middleware/passportMiddleware'); // Import the authenti
 router.post('/add', auth, habitController.addHabit);
 router.post('/delete/:habitId', auth, habitController.deleteHabit);
 router.get('/tracking/:habitId', trackingController.renderHabitTracker);
+router.post('/update-status', auth, trackingController.updateStatus);
 
 module.exports = router;

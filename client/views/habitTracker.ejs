@@ -15,17 +15,31 @@
         <div class="week-tracker">
             <% for(let i = 6; i >= 0; i--) { %>
                 <% let trackDate = new Date(); 
-                   trackDate.setDate(trackDate.getDate() - i); 
-                   let found = trackingData.find(track => new Date(track.date).toDateString() === trackDate.toDateString());
+                trackDate.setDate(trackDate.getDate() - i); 
+                let found = trackingData.find(track => moment(track.date).isSame(trackDate, 'day'));
                 %>
                 <div class="day">
                     <div class="date"><%= trackDate.getDate() %></div>
                     <div class="status <%= found ? found.status : 'none' %>">
-                        <%= found ? (found.status === 'done' ? '&#10004;' : '&#10008;') : 'None' %>
+                        <% if (found && found.status === 'done') { %>
+                            Done
+                        <% } else if (found && found.status === 'not done') { %>
+                            Not Done
+                        <% } else { %>
+                            None
+                        <% } %>
+                        <!-- Form to change status -->
+                        <form action="/habit/update-status" method="POST">
+                            <input type="hidden" name="date" value="<%= trackDate.toISOString() %>">
+                            <input type="hidden" name="habitId" value="<%= habit._id %>">
+                            <button type="submit" name="status" value="done">Done</button>
+                            <button type="submit" name="status" value="not done">Not Done</button>
+                        </form>
                     </div>
                 </div>
             <% } %>
         </div>
+
         
         <!-- Back Link -->
         <a href="/dashboard" class="back-link">Back to Dashboard</a>

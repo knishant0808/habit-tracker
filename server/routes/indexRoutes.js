@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const userRoutes = require('./userRoutes'); // Import user routes
+const checkAuth = require('../middleware/checkAuth'); // Import the new middleware
+
+const userRoutes = require('./userRoutes');
 const dashboardRoutes = require('./dashboardRoutes');
 const habitRoutes = require('./habitRoutes');
 
 // Route for the homepage
-router.get('/', (req, res) => {
-    res.render('homepage');
+router.get('/', checkAuth, (req, res) => {
+    if (req.user) {
+        res.redirect('/dashboard');
+    } else {
+        res.render('homepage');
+    }
 });
 
 // Further routes
