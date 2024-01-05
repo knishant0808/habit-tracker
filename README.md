@@ -1,4 +1,4 @@
-# Project Name
+# Habit Tracker
 
 Habit Tracker is a web application designed to help users establish and maintain daily habits. This application allows users to:
 
