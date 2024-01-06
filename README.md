@@ -14,7 +14,7 @@ Habit Tracker is a web application designed to help users establish and maintain
 - [Usage](#usage)
 - [Contributing](#contributing)
 
-### Prerequisites
+## Prerequisites
 
 This project requires Node.js and npm to be installed. You can download and install Node.js from [Node.js official website](https://nodejs.org/).
 
