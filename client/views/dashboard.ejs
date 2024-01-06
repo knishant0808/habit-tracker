@@ -38,7 +38,7 @@
                 <% habits.forEach(function(habit) { %>
                     <li>
                         <!-- Link to habit's tracking page -->
-                        <a href="/habit/tracking/<%= habit._id %>"><%= habit.name %></a> - [Status]
+                        <a href="/habit/tracking/<%= habit._id %>"><%= habit.name %></a>
                         <!-- Form for deleting a habit -->
                         <form action="/habit/delete/<%= habit._id %>" method="POST" style="display: inline;">
                             <!-- Button to delete the habit with a confirmation prompt -->

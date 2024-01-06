@@ -13,7 +13,6 @@ Habit Tracker is a web application designed to help users establish and maintain
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ### Prerequisites
 
